@@ -1,0 +1,26 @@
+{{#*inline "noteItem"}}
+    <div>
+        <span>{{note.deatline}}</span><span>{{note.noteTitle}}</span><span>{{note.importance}}</span>
+        <input type="checkbox" readonly value="{{note.isNoteDone}}"><input type="text" readonly value="{{note.noteDescription}}"><form action='/notes/{{_id}}' method='get'>
+        <input type='submit' value='Bearbeiten' >
+    </form>
+    </div>
+{{/inline}}
+{{#*inline "noItem"}}
+    <div>
+        <span>Keine Notizen erfasst</span>
+    </div>
+{{/inline}}
+<button type="button" id="newNote">Neue Notiz</button><button type="button" id="nightmode">Nachtmodus aktivieren</button>
+<input type=text list=orderBy itemid="1">
+<datalist id=orderBy >
+    <option> Nach Enddatum
+    <option> Nach Erstelldatum
+    <option> Nach Wichtigkeit
+</datalist><button type="button" id="hideFinished">Fertige verbergen</button>
+
+{{#each notes}}
+    {{> noteItem note=.}}
+{{else}}
+    {{> noItem}}
+{{/each}}
