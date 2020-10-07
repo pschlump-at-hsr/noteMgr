@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const notesRouter = express.Router();
+import {notesController} from '../controller/notesController.js';
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+notesRouter.get('/', function(req, res, next) {
     res.render('note');
 });
-router.get("/orders/:id/", orders.showOrder);
+notesRouter.get("/orders/:id/", notesController.showNotes);
 
-module.exports = router;
+export {notesRouter};

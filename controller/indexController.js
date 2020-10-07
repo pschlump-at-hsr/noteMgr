@@ -1,4 +1,4 @@
-import {noteStore} from '../services/noteStore.js';
+import {noteStore} from "../services/noteStore.js";
 
 export class IndexController {
 

@@ -11,7 +11,9 @@
         <span>Keine Notizen erfasst</span>
     </div>
 {{/inline}}
-<button type="button" id="newNote">Neue Notiz</button><button type="button" id="nightmode">Nachtmodus aktivieren</button>
+<form action='/notes' method='get'>
+    <input type='submit' value='Neue Notiz' >
+</form><button type="button" id="nightmode">Nachtmodus aktivieren</button>
 <input type=text list=orderBy itemid="1">
 <datalist id=orderBy >
     <option> Nach Enddatum

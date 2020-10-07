@@ -1,4 +1,4 @@
-import {noteStore} from '../services/noteStore.js';
+import {noteStore} from '../services/noteStore.js'
 
 export class NotesController {
     createNote(req, res) {
@@ -9,7 +9,7 @@ export class NotesController {
         res.render("index", await noteStore.add(req.params.title, req.params.description, req.params.importance, req.params.deadline, req.params.done));
     };
 
-    async showOrder(req, res) {
+    async showNotes(req, res) {
         res.render("note", await noteStore.get(req.params.id));
     };
 
