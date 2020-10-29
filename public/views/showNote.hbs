@@ -1,0 +1,16 @@
+<H1>Todo Bearbeiten</H1>
+<div id="note">
+
+    <form action='/notes/{{note._id}}/' method='post'>
+    {{#if note}}
+        <label for="title">Titel</label><input type="text" name="title" id="title" value="{{note.title}}">
+        <label for="description">Beschreibung</label><input type="text" name="description" id="description" value="{{note.description}}">
+        <label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0" value="{{note.importance}}">
+        <label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline" value="{{note.deadline}}">
+        <label for="done">Erledig</label><input type="checkbox" name="done" id="done" value="{{note.done}}">
+        <button type="submit" id="submitNote" name="submit">Anlegen</button>
+    {{/if}}
+        <button type="button" id="cancel">Abbrechen</button>
+    </form>
+
+</div>

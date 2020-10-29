@@ -6,15 +6,21 @@ export class NotesController {
     };
 
     async createNewNote(req, res) {
-        res.render("index", await noteStore.add(req.params.title, req.params.description, req.params.importance, req.params.deadline, req.params.done));
+        console.log('noteTitle ' + req.fields.title +' noteDescription ' + req.fields.description +' importance ' + req.fields.importance +' deadline ' + req.fields.deadline);
+        res.render("index", await noteStore.add(req.fields.title, req.fields.description, req.fields.importance, req.fields.deadline, req.fields.done));
     };
 
-    async showNotes(req, res) {
-        res.render("note", await noteStore.get(req.params.id));
+    async updateNote(req, res) {
+        noteStore.update(req).then(value => res.render("index", value ));
+    };
+
+    async showNote(req, res) {
+        console.log("id: "+req.fields.id)
+        noteStore.get(req.fields.id).then(value => res.render("note", value));
     };
 
     async finish(req, res) {
-        res.render("index", await noteStore.finish(req.params.id));
+        res.render("index", await noteStore.finish(req.fields.id));
     };
 
 }

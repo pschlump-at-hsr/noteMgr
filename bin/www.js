@@ -5,7 +5,7 @@
  */
 
 import {app} from "../app.js";
-import debug from 'debug';
+import debug from '../node_modules/debug/src/debug.js';
 import http from 'http';
 
 /**

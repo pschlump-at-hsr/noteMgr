@@ -1,7 +1,7 @@
 {{#*inline "noteItem"}}
     <div>
         <span>{{note.deatline}}</span><span>{{note.noteTitle}}</span><span>{{note.importance}}</span>
-        <input type="checkbox" readonly value="{{note.isNoteDone}}"><input type="text" readonly value="{{note.noteDescription}}"><form action='/notes/{{_id}}' method='get'>
+        <input type="checkbox" readonly value="{{note.isNoteDone}}"><input type="text" readonly value="{{note.noteDescription}}"><form action='/notes/{{_id}}/' method='get'>
         <input type='submit' value='Bearbeiten' >
     </form>
     </div>
@@ -13,7 +13,9 @@
 {{/inline}}
 <form action='/notes' method='get'>
     <input type='submit' value='Neue Notiz' >
-</form><button type="button" id="nightmode">Nachtmodus aktivieren</button>
+</form><form action='/settings' method='get'>
+    <input type='submit' value='Dark Mode' >
+</form>
 <input type=text list=orderBy itemid="1">
 <datalist id=orderBy >
     <option> Nach Enddatum
