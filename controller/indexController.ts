@@ -3,7 +3,9 @@ import {noteStore} from "../services/noteStore.js";
 export class IndexController {
 
     index(req, res) {
-        res.render("index", noteStore.all());
+        noteStore.all().then(value => {
+            res.render("index", {title: 'Express', notes: value})
+        });
     };
 
     _handleBackRef(req, res) {

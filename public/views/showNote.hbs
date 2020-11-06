@@ -8,9 +8,9 @@
         <label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0" value="{{note.importance}}">
         <label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline" value="{{note.deadline}}">
         <label for="done">Erledig</label><input type="checkbox" name="done" id="done" value="{{note.done}}">
-        <button type="submit" id="submitNote" name="submit">Anlegen</button>
+        <button type="submit" class="button" id="submitNote" name="submit">Anlegen</button>
     {{/if}}
-        <button type="button" id="cancel">Abbrechen</button>
+        <button type="reset" id="cancel">Abbrechen</button>
     </form>
 
 </div>

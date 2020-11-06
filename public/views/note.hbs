@@ -1,11 +1,11 @@
 <H1>Neues Todo</H1>
-<div id="note">
-    <form action='/notes' method='post'>
-        <label for="title">Titel</label><input type="text" name="title" id="title">
-        <label for="description">Beschreibung</label><input type="text" name="description" id="description">
-        <label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0">
-        <label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline">
-        <label for="done">Erledig</label><input type="checkbox" name="done" id="done">
+<div id="note" class="new-note">
+    <form class="form-new-note" action='/notes' method='post'>
+        <span class="new-note-title"><label for="title">Titel</label><input type="text" name="title" id="title"></span>
+        <span class="new-note-desc"><label for="description">Beschreibung</label><textarea rows="3" name="description" id="description"></textarea></span>
+        <span class="new-note-importance"><label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0"></span>
+        <span class="new-note-deadline"><label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline"></span>
+        <span class="new-note-done"><label for="done">Erledig</label><input type="checkbox" name="done" id="done"></span>
         <button type="submit" id="submitNote" name="submit">Anlegen</button>
         <button type="button" id="cancel">Abbrechen</button>
     </form>

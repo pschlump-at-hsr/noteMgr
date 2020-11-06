@@ -6,8 +6,8 @@ import session from 'express-session';
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import sassMiddleware from "node-sass-middleware";
-
-import {indexRouter} from "./routes";
+import {sessionUserSettings} from "./services/sessionUserSettings.js"
+import {indexRouter} from './routes/index.js';
 import {notesRouter} from "./routes/notes.js";
 
 const app = express();
@@ -18,11 +18,13 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(session({secret: 'loremipsumdolorsitametonsecteturadipisicielit', resave: false, saveUninitialized: true}));
+app.use(sessionUserSettings);
 app.use(formidableMiddleware());
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(path.resolve('public'), 'public'),
+  src: path.resolve('public'),
   dest: path.join(path.resolve('public'), 'public'),
+  debug: true,
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
@@ -45,7 +47,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  next()
 });
 
 export {app};

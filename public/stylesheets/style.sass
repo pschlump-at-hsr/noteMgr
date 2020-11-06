@@ -2,5 +2,103 @@ body
   padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
+
+  .button
+    width: 100%
+    height: 100%
+
+  .form-new-note
+    display: grid
+    grid-template-columns: minmax(300px, 500px)
+    grid-template-rows: 40px 100px 40px 40px 40px 40px 40px
+
+    input, textarea
+      float: right
+      width: 70%
+
+    .new-note-title
+      grid-row: 1 / 2
+
+    .new-note-desc
+      grid-row: 2 / 3
+
+  .container
+    display: grid
+    grid-template-columns: repeat(6, 16.66%)
+    grid-gap: 0.5rem
+    grid-auto-rows: 40px
+
+    #form-new
+      grid-column: 1 / 2
+      grid-row: 1 / 2
+
+    #form-dark
+      grid-column: 2 / 3
+      grid-row: 1 / 2
+
+    #input-order
+      grid-column: 1 / 3
+      grid-row: 2 / 3
+
+
+    #form-switch-style
+      grid-column: 6 / 7
+
+      .btn-switch-style
+        float: right
+
+    #form-hide-finished
+      grid-column: 6 / 7
+
+      .btn-hide-finished
+        float: right
+
+    .deadline
+      grid-column: 1 / 2
+      grid-row: auto
+      margin-top: 20px
+
+
+
+    .noteTitle
+      grid-column: 2 / 3
+      grid-row: auto
+      margin-top: 20px
+
+    .importance
+      grid-column: 5 / 6
+      margin-top: 20px
+
+    .note-item-chk-box
+      grid-column: 1 / 2
+
+    .note-item-desc
+      grid-column: 2 / 6
+      width: 100%
+      height: available
+
+.light-theme
+  background-color: white
+  color: black
+
+  .button
+    background-color: #e1e1e1
+    border: #adadad solid thin
+
+.dark-theme
+  background-color: #181818
+  color: #aaaaaa
+
+  input, textarea
+    background-color: #3d3d3d
+    color: #aaaaaa
+
+  .button
+    background-color: #212121
+    border: #3d3d3d solid thin
+    &:hover
+      background-color: #3d3d3d
+      border: #aaaaaa solid thin
+
 a
   color: #00B7FF

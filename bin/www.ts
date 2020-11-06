@@ -5,7 +5,7 @@
  */
 
 import {app} from "../app.js";
-import debug from '../node_modules/debug/src/debug.js';
+import debug from 'debug';
 import http from 'http';
 
 /**
@@ -83,8 +83,10 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  if (addr) {
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+  }
 }

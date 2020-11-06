@@ -1,30 +1,39 @@
 {{#*inline "noteItem"}}
-    <div>
-        <span>{{note.deatline}}</span><span>{{note.noteTitle}}</span><span>{{note.importance}}</span>
-        <input type="checkbox" readonly value="{{note.isNoteDone}}"><input type="text" readonly value="{{note.noteDescription}}"><form action='/notes/{{_id}}/' method='get'>
-        <input type='submit' value='Bearbeiten' >
-    </form>
-    </div>
+        <span class="deadline">{{note.deadline}}</span><span class="noteTitle">{{note.noteTitle}}</span><span class="importance">{{note.importance}}</span>
+        <span class="note-item-chk-box"><input type="checkbox" readonly value="{{note.isNoteDone}}"><label id="label-done" for="done">Erledig</label></span>
+        <textarea rows="3" class="note-item-desc" readonly>{{note.noteDescription}}</textarea>
+        <form class="form-edit" action='/notes/{{_id}}/' method='get'>
+            <input type='submit' class="button" value='Bearbeiten' >
+        </form>
 {{/inline}}
 {{#*inline "noItem"}}
     <div>
         <span>Keine Notizen erfasst</span>
     </div>
 {{/inline}}
-<form action='/notes' method='get'>
-    <input type='submit' value='Neue Notiz' >
-</form><form action='/settings' method='get'>
-    <input type='submit' value='Dark Mode' >
-</form>
-<input type=text list=orderBy itemid="1">
-<datalist id=orderBy >
-    <option> Nach Enddatum
-    <option> Nach Erstelldatum
-    <option> Nach Wichtigkeit
-</datalist><button type="button" id="hideFinished">Fertige verbergen</button>
+<div class="container {{orderBy}}">
+    <form action='/notes' method='get' id="form-new">
+        <input type='submit' class="btn-new button" value='Neue Notiz'>
+    </form>
+    <form action='/settings' method='get' id="form-dark">
+        <input type='submit' class="btn-dark button" value='Dark Mode'>
+    </form>
 
-{{#each notes}}
-    {{> noteItem note=.}}
-{{else}}
-    {{> noItem}}
-{{/each}}
+    <input type=text list=orderBy itemid="1" id="input-order">
+    <datalist id=orderBy >
+        <option> Nach Enddatum
+        <option> Nach Erstelldatum
+        <option> Nach Wichtigkeit
+    </datalist>
+    <form action='/notes' method='post' id="form-switch-style">
+        <input type='submit' class="btn-switch-style button" value='Style Switcher'>
+    </form>
+    <form action='/notes' method='post' id="form-hide-finished">
+        <input type='submit' class="btn-hide-finished button" value='Fertige Verbergen'>
+    </form>
+    {{#each notes}}
+        {{> noteItem note=.}}
+    {{else}}
+        {{> noItem}}
+    {{/each}}
+</div>
