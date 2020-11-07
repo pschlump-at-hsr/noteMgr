@@ -3,14 +3,15 @@ import {Note, noteStore} from "../services/noteStore.js";
 const indexRouter = express.Router();
 
 /* GET home page. */
-indexRouter.get('/', function (req, res) {
-  noteStore.all().then(value => {
+indexRouter.get('/', function (req: any, res) {
+  noteStore.all(req).then(value => {
     let notes: Note[] = [];
     value.forEach(doc => {
-      notes.push(doc as unknown as Note)
-      console.log(notes[0].noteTitle);
+      notes.push(doc as unknown as Note);
     });
-    res.render('index', {title: 'Express', notes: notes, style: 'dark-theme'});
+    console.log(JSON.stringify(value));
+    console.log(JSON.stringify(notes));
+    res.render('index', {title: 'Express', notes: notes, style: req.session.userSettings.styleMode});
   })
 });
 

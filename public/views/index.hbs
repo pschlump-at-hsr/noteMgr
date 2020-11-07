@@ -1,7 +1,7 @@
 {{#*inline "noteItem"}}
-        <span class="deadline">{{note.deadline}}</span><span class="noteTitle">{{note.noteTitle}}</span><span class="importance">{{note.importance}}</span>
-        <span class="note-item-chk-box"><input type="checkbox" readonly value="{{note.isNoteDone}}"><label id="label-done" for="done">Erledig</label></span>
-        <textarea rows="3" class="note-item-desc" readonly>{{note.noteDescription}}</textarea>
+        <span class="deadline">{{note._deadline}}</span><span class="noteTitle">{{note._noteTitle}}</span><span class="importance">{{note._importance}}</span>
+        <span class="note-item-chk-box"><input type="checkbox" readonly value="{{note._isNoteDone}}"><label id="label-done" for="done">Erledig</label></span>
+        <textarea rows="3" class="note-item-desc" readonly>{{note._noteDescription}}</textarea>
         <form class="form-edit" action='/notes/{{_id}}/' method='get'>
             <input type='submit' class="button" value='Bearbeiten' >
         </form>
@@ -15,17 +15,16 @@
     <form action='/notes' method='get' id="form-new">
         <input type='submit' class="btn-new button" value='Neue Notiz'>
     </form>
-    <form action='/settings' method='get' id="form-dark">
-        <input type='submit' class="btn-dark button" value='Dark Mode'>
+    <form action='/settings/1' method='post' id="form-order-by-end-date">
+        <input type='submit' class="btn-order-by-end-date button" value='Nach Enddatum'>
     </form>
-
-    <input type=text list=orderBy itemid="1" id="input-order">
-    <datalist id=orderBy >
-        <option> Nach Enddatum
-        <option> Nach Erstelldatum
-        <option> Nach Wichtigkeit
-    </datalist>
-    <form action='/notes' method='post' id="form-switch-style">
+    <form action='/settings/2' method='post' id="form-order-by-start-date">
+        <input type='submit' class="btn-order-by-start-date button" value='Nach Erstelldatum'>
+    </form>
+    <form action='/settings/3' method='post' id="form-order-by-importance">
+        <input type='submit' class="btn-order-by-importance button" value='Nach Wichtigkeit'>
+    </form>
+    <form action='/settings/4' method='post' id="form-switch-style">
         <input type='submit' class="btn-switch-style button" value='Style Switcher'>
     </form>
     <form action='/notes' method='post' id="form-hide-finished">

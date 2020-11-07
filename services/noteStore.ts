@@ -44,13 +44,15 @@ import Datastore from 'nedb-promises'
         private _noteDescription: string;
         private _importance: string;
         private _deadline: Date;
+        private _createDate: Date;
         private _isNoteDone: boolean;
 
-        constructor(noteTitle: string, noteDescription: string, importance: string, deadline: Date, isNoteDone: boolean) {
+        constructor(noteTitle: string, noteDescription: string, importance: string, deadline: Date, createDate: Date, isNoteDone: boolean) {
             this._noteTitle = noteTitle;
             this._noteDescription = noteDescription;
             this._importance = importance;
             this._deadline = deadline;
+            this._createDate = createDate;
             this._isNoteDone = isNoteDone;
         }
     }
@@ -59,23 +61,24 @@ import Datastore from 'nedb-promises'
         private db: Datastore;
 
         constructor(db?: Datastore) {
-            this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
+            this.db = db || new Datastore({filename: './data/notes.db', autoload: true, corruptAlertThreshold: 1 });
         }
 
-        async add(noteTitle: string, noteDescription: string, importance: number, deadline: Date, isNoteDone: boolean = false) {
+        async add(noteTitle: string, noteDescription: string, importance: number, deadline: Date, createDate: Date, isNoteDone: boolean = false) {
             console.log('noteTitle ' + noteTitle + ' noteDescription ' + noteDescription + ' importance ' + importance + ' deadline ' + deadline);
-            let note = new Note(noteTitle, noteDescription, '*'.repeat(importance), deadline, isNoteDone);
+            let note = new Note(noteTitle, noteDescription, '*'.repeat(importance), deadline, createDate, isNoteDone);
             return await noteStore.db.insert(note);
         }
 
         async update(req: { fields: { id: string; title: string; description: string; importance: number; deadline: Date; done: boolean; }; }) {
+            // @ts-ignore
             return await noteStore.db.update({_id: '' + req.fields.id + ''}, {
                 $set: {
-                    title: '' + req.fields.title + '',
-                    description: '' + req.fields.description + '',
-                    importance: '' + req.fields.importance + '',
-                    deadline: '' + req.fields.deadline + '',
-                    isNoteDone: '' + req.fields.done + ''
+                    _noteTitle: req.fields.title,
+                    _noteDescription: req.fields.description,
+                    _importance: req.fields.importance,
+                    _deadline: req.fields.deadline,
+                    _isNoteDone: req.fields.done
                 }
             }) as unknown as Note;
         }
@@ -92,9 +95,10 @@ import Datastore from 'nedb-promises'
             });
         }
 
-        async all() {
-            return noteStore.db.find({}, function (err: any, docs: any) {
-                return docs
+        async all(req) {
+            console.log('limit: '+req.userSettings.doLimit+' orderBy:'+req.userSettings.orderBy);
+            return noteStore.db.find(req.userSettings.doLimit).sort(req.userSettings.orderBy).then(value => {
+                return value;
             });
         }
     }

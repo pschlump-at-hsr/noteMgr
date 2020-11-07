@@ -9,6 +9,7 @@ import sassMiddleware from "node-sass-middleware";
 import {sessionUserSettings} from "./services/sessionUserSettings.js"
 import {indexRouter} from './routes/index.js';
 import {notesRouter} from "./routes/notes.js";
+import {settingsRouter} from "./routes/settings.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(path.resolve('public'), 'public')));
 
+app.use('/settings', settingsRouter);
 app.use('/', indexRouter);
 app.use('/notes', notesRouter);
 

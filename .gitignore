@@ -1,2 +1,6 @@
 *.dll
 /node_modules/*
+*.js
+/data/notes.db
+/public/public/stylesheets/style.css
+/public/public/stylesheets/style.css.map

@@ -1,16 +1,12 @@
 <H1>Todo Bearbeiten</H1>
-<div id="note">
-
-    <form action='/notes/{{note._id}}/' method='post'>
-    {{#if note}}
-        <label for="title">Titel</label><input type="text" name="title" id="title" value="{{note.title}}">
-        <label for="description">Beschreibung</label><input type="text" name="description" id="description" value="{{note.description}}">
-        <label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0" value="{{note.importance}}">
-        <label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline" value="{{note.deadline}}">
-        <label for="done">Erledig</label><input type="checkbox" name="done" id="done" value="{{note.done}}">
-        <button type="submit" class="button" id="submitNote" name="submit">Anlegen</button>
-    {{/if}}
-        <button type="reset" id="cancel">Abbrechen</button>
+<div id="note" class="new-note">
+    <form class="form-new-note" action='/notes/{{note._id}}/' method='post'>
+        <span class="new-note-title"><label for="title">Titel</label><input type="text" name="title" id="title" value="{{note._noteTitle}}"></span>
+        <span class="new-note-desc"><label for="description">Beschreibung</label><textarea rows="3" name="description" id="description">{{note._noteDescription}}</textarea></span>
+        <span class="new-note-importance"><label for="importance">Wichtigkeit</label><input type="number" name="importance" id="importance" max="5" min="0" value="{{note._importance}}"></span>
+        <span class="new-note-deadline"><label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline" value="{{note._deadline}}"></span>
+        <span class="new-note-done"><label for="done">Erledig</label><input type="checkbox" name="done" id="done" checked="{{note._isNoteDone}}"></span>
+        <button type="submit" id="submitNote" name="submit">Anlegen</button>
+        <button type="button" id="cancel">Abbrechen</button>
     </form>
-
 </div>

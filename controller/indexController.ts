@@ -3,8 +3,9 @@ import {noteStore} from "../services/noteStore.js";
 export class IndexController {
 
     index(req, res) {
-        noteStore.all().then(value => {
-            res.render("index", {title: 'Express', notes: value})
+        noteStore.all(req).then(value => {
+            console.log(JSON.stringify(value));
+            res.render("index", {title: 'Express', notes: value, style: req.session.userSettings.styleMode})
         });
     };
 
