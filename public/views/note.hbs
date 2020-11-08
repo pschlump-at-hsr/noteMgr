@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <H1>Neues Todo</H1>
 <div id="note" class="new-note">
     <form class="form-new-note" action='/notes' method='post'>
@@ -7,7 +8,7 @@
         <span class="new-note-deadline"><label for="deadline">Fertig bis</label><input type="date" name="deadline" id="deadline"></span>
         <span class="new-note-done"><label for="done">Erledig</label><input type="checkbox" name="done" id="done"></span>
         <span class="new-note-submit"><input type="submit" id="submit-note" class="button" name="submit" value="Anlegen"></span>
-        <span class="new-note-cancel"><input type="button" class="button" id="cancel" value="Abbrechen"></span>
+        <span class="new-note-cancel"><a href="/" class="button" id="cancel">Abbrechen</a></span>
     </form>
 
 </div>

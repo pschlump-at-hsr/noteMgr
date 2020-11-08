@@ -6,6 +6,21 @@ body
     width: 100%
     height: 100%
     float: right
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+    //noinspection CssUnusedSymbol
+
+  #cancel
+    -webkit-appearance: button
+    -moz-appearance: button
+    appearance: button
+    text-decoration: none
+    color: initial
+    float: right
+    width: 70%
+    text-align: center
+    line-height: 3.5em
+
+
 
   .form-new-note
     display: grid
@@ -23,85 +38,130 @@ body
     .new-note-desc
       grid-row: 2 / 3
 
-  .container
-    display: grid
-    grid-template-columns: repeat(6, 1fr)
-    grid-gap: 0.5rem
-    grid-auto-rows: 1fr
+  @media (max-width: 800px)
+    .container
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-gap: 0.5rem
+      grid-auto-rows: 1fr
 
-    #form-new
-      grid-column: 1 / 2
-      grid-row: 1 / 2
+      #form-new
+        grid-column: 1 / 2
+        grid-row: 1 / 2
 
-    #form-order-by-end-date
-      grid-column: 1 / 2
-      grid-row: 2 / 3
+      #form-switch-style
+        grid-column: 2 / 3
+        grid-row: 1 / 2
 
-    #form-order-by-start-date
-      grid-column: 2 / 3
-      grid-row: 2 / 3
+      #form-order-by-end-date
+        grid-column: 1 / 3
+        grid-row: 2 / 3
 
-    #form-order-by-importance
-      grid-column: 3 / 4
-      grid-row: 2 / 3
+      #form-order-by-start-date
+        grid-column: 1 / 3
+        grid-row: 3 / 4
 
-    .asc
-      background-color: cornflowerblue
-      border-color: darkcyan
+      #form-order-by-importance
+        grid-column: 1 / 3
+        grid-row: 4 / 5
 
-    .desc
-      background-color: indianred
-      border-color: crimson
+      #form-hide-finished
+        grid-column: 1 / 3
+        grid-row: 5 / 6
 
-    #form-switch-style
-      grid-column: 6 / 7
+      .deadline
+        grid-column: 1 / 2
+        margin-top: 20px
 
-      .btn-switch-style
-        float: right
+      .noteTitle
+        grid-column: 2 / 3
+        font-size: 1.0em
+        margin-top: 20px
 
-    #form-hide-finished
-      grid-column: 6 / 7
+      .importance
+        grid-column: 1 / 2
+        font-size: 3em
 
-      .btn-hide-finished
-        float: right
+      .note-item-chk-box
+        grid-column: 2 / 3
+        align-self: center
 
-    .deadline
-      grid-column: 1 / 2
-      grid-row: auto
-      margin-top: 20px
+      .note-item-desc
+        grid-column: 1 / 3
+        width: available
+        height: available
 
-    .noteTitle
-      grid-column: 2 / 3
-      grid-row: auto
-      margin-top: 20px
-      font-weight: bold
-      font-size: 1.5em
+  @media (min-width: 800px)
+    .container
+      display: grid
+      grid-template-columns: repeat(6, 1fr)
+      grid-gap: 0.5rem
+      grid-auto-rows: 1fr
 
-    .importance
-      --star-size: 60px
-      --star-color: #fff
-      --star-background: #fc0
-      --percent: calc(var(--rating) / 5 * 100%)
-      font-family: Times
-      line-height: 1
-      grid-column: 5 / 6
-      margin-top: 20px
-      font-size: 3em
+      #form-new
+        grid-column: 1 / 2
+        grid-row: 1 / 2
 
-      &::before
-        content: '★★★★★'
-        letter-spacing: 3px
-        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent))
-        -webkit-background-clip: text
-        -webkit-text-fill-color: transparent
+      #form-order-by-end-date
+        grid-column: 1 / 2
+        grid-row: 2 / 3
 
-    .note-item-chk-box
-      grid-column: 1 / 2
+      #form-order-by-start-date
+        grid-column: 2 / 3
+        grid-row: 2 / 3
 
-    .note-item-desc
-      grid-column: 2 / 6
-      width: 100%
-      height: available
+      #form-order-by-importance
+        grid-column: 3 / 4
+        grid-row: 2 / 3
+
+      #form-switch-style
+        grid-column: 6 / 7
+        grid-row: 1 / 2
+
+      #form-hide-finished
+        grid-column: 6 / 7
+        grid-row: 2 / 3
+
+      .deadline
+        grid-column: 1 / 2
+        grid-row: auto
+        margin-top: 20px
+
+      .noteTitle
+        grid-column: 2 / 3
+        grid-row: auto
+        margin-top: 30px
+        font-size: 1.5em
+
+      .importance
+        grid-column: 5 / 6
+        font-size: 3em
+        margin-top: 20px
+
+      .note-item-chk-box
+        grid-column: 1 / 2
+
+      .note-item-desc
+        grid-column: 2 / 6
+        width: 100%
+        height: available
+
+  .importance
+    --star-size: 60px
+    --star-color: #fff
+    --star-background: #fc0
+    --percent: calc(var(--rating) / 5 * 100%)
+    font-family: Times, sans-serif
+    line-height: 1
+    font-size: 3em
+
+    &::before
+      content: '★★★★★'
+      letter-spacing: 3px
+      background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent))
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent
+
 
 .light-theme
   background-color: white
@@ -115,6 +175,15 @@ body
       background-color: #adadad
       border: #aaaaaa solid thin
 
+  .asc
+    background-color: cornflowerblue
+    border-color: darkcyan
+
+  .desc
+    background-color: indianred
+    border-color: crimson
+
+//noinspection CssUnusedSymbol
 .dark-theme
   background-color: #181818
   color: #aaaaaa
@@ -126,6 +195,14 @@ body
     &:hover
       background-color: #3d3d3d
       border: #aaaaaa solid thin
+
+  .asc
+    background-color: cornflowerblue
+    border-color: darkcyan
+
+  .desc
+    background-color: indianred
+    border-color: crimson
 
   input, textarea
     background-color: #3d3d3d

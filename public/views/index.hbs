@@ -1,8 +1,11 @@
 {{#*inline "noteItem"}}
-    <span class="deadline">{{note._deadline}}</span><span class="noteTitle">{{note._noteTitle}}</span><span
-            style="--rating: {{note._importance}}" class="importance"></span>
-    <span class="note-item-chk-box"><input id="done" type="checkbox" readonly {{note.isNoteDone}}><label id="label-done"
-                                                                                               for="done">Erledig</label></span>
+    <!--suppress ALL -->
+    <span class="deadline">{{note._deadline}}</span>
+    <span class="noteTitle">{{note._noteTitle}}</span>
+    <span style="--rating: {{note._importance}}" class="importance"></span>
+    <span class="note-item-chk-box">
+        <input id="done" type="checkbox" readonly {{note.isNoteDone}}><label id="label-done" for="done">Erledig</label>
+    </span>
     <textarea rows="3" class="note-item-desc" readonly>{{note._noteDescription}}</textarea>
     <form class="form-edit" action='/notes/{{_id}}/' method='get'>
         <input type='submit' class="button" value='Bearbeiten'>

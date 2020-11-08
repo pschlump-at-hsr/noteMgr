@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import sassMiddleware from "node-sass-middleware";
 import {sessionUserSettings} from "./services/sessionUserSettings.js"
+// noinspection ES6PreferShortImport
 import {indexRouter} from './routes/index.js';
 import {notesRouter} from "./routes/notes.js";
 import {settingsRouter} from "./routes/settings.js";

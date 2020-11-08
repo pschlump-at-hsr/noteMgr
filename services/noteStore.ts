@@ -1,21 +1,5 @@
 import Datastore from 'nedb-promises'
     export class Note {
-        get noteTitle(): string {
-            return this._noteTitle;
-        }
-
-        set noteTitle(value: string) {
-            this._noteTitle = value;
-        }
-
-        get noteDescription(): string {
-            return this._noteDescription;
-        }
-
-        set noteDescription(value: string) {
-            this._noteDescription = value;
-        }
-
         get importance(): string {
             return this._importance;
         }

@@ -1,5 +1,4 @@
 export class SettingsController {
-
     setSettings(req, res) {
         switch (req.params.id) {
             case '1':

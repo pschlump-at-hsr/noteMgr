@@ -3,7 +3,7 @@ export const sessionUserSettings = (req, res, next) => {
     const userSettings = req.session.userSettings || {
         orderBy: {deadline: 1},
         doLimit: {},
-        orderDirectionDeadline: '',
+        orderDirectionDeadline: 'asc',
         orderDirectionCreateDate: '',
         orderDirectionImportance: '',
         styleMode: 'light-theme'
