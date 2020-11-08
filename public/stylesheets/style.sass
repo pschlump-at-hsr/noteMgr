@@ -2,15 +2,16 @@ body
   padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
-
   .button
     width: 100%
     height: 100%
+    float: right
 
   .form-new-note
     display: grid
-    grid-template-columns: minmax(300px, 500px)
-    grid-template-rows: 40px 100px 40px 40px 40px 40px 40px
+    grid-template-columns: 1fr
+    grid-auto-rows: 1fr
+    grid-gap: 0.5rem
 
     input, textarea
       float: right
@@ -24,9 +25,9 @@ body
 
   .container
     display: grid
-    grid-template-columns: repeat(6, 16.66%)
+    grid-template-columns: repeat(6, 1fr)
     grid-gap: 0.5rem
-    grid-auto-rows: 40px
+    grid-auto-rows: 1fr
 
     #form-new
       grid-column: 1 / 2
@@ -44,6 +45,13 @@ body
       grid-column: 3 / 4
       grid-row: 2 / 3
 
+    .asc
+      background-color: cornflowerblue
+      border-color: darkcyan
+
+    .desc
+      background-color: indianred
+      border-color: crimson
 
     #form-switch-style
       grid-column: 6 / 7
@@ -62,17 +70,30 @@ body
       grid-row: auto
       margin-top: 20px
 
-
-
     .noteTitle
       grid-column: 2 / 3
       grid-row: auto
       margin-top: 20px
+      font-weight: bold
+      font-size: 1.5em
 
     .importance
+      --star-size: 60px
+      --star-color: #fff
+      --star-background: #fc0
+      --percent: calc(var(--rating) / 5 * 100%)
+      font-family: Times
+      line-height: 1
       grid-column: 5 / 6
       margin-top: 20px
       font-size: 3em
+
+      &::before
+        content: '★★★★★'
+        letter-spacing: 3px
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent))
+        -webkit-background-clip: text
+        -webkit-text-fill-color: transparent
 
     .note-item-chk-box
       grid-column: 1 / 2
@@ -89,6 +110,7 @@ body
   .button
     background-color: #e1e1e1
     border: #adadad solid thin
+
     &:hover
       background-color: #adadad
       border: #aaaaaa solid thin
@@ -97,16 +119,17 @@ body
   background-color: #181818
   color: #aaaaaa
 
-  input, textarea
-    background-color: #3d3d3d
-    color: #aaaaaa
-
   .button
     background-color: #212121
     border: #3d3d3d solid thin
+
     &:hover
       background-color: #3d3d3d
       border: #aaaaaa solid thin
+
+  input, textarea
+    background-color: #3d3d3d
+    color: #aaaaaa
 
 a
   color: #00B7FF

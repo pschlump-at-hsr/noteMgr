@@ -1,10 +1,12 @@
 {{#*inline "noteItem"}}
-        <span class="deadline">{{note._deadline}}</span><span class="noteTitle">{{note._noteTitle}}</span><span class="importance">{{note._importance}}</span>
-        <span class="note-item-chk-box"><input type="checkbox" readonly value="{{note._isNoteDone}}"><label id="label-done" for="done">Erledig</label></span>
-        <textarea rows="3" class="note-item-desc" readonly>{{note._noteDescription}}</textarea>
-        <form class="form-edit" action='/notes/{{_id}}/' method='get'>
-            <input type='submit' class="button" value='Bearbeiten' >
-        </form>
+    <span class="deadline">{{note._deadline}}</span><span class="noteTitle">{{note._noteTitle}}</span><span
+            style="--rating: {{note._importance}}" class="importance"></span>
+    <span class="note-item-chk-box"><input id="done" type="checkbox" readonly {{note.isNoteDone}}><label id="label-done"
+                                                                                               for="done">Erledig</label></span>
+    <textarea rows="3" class="note-item-desc" readonly>{{note._noteDescription}}</textarea>
+    <form class="form-edit" action='/notes/{{_id}}/' method='get'>
+        <input type='submit' class="button" value='Bearbeiten'>
+    </form>
 {{/inline}}
 {{#*inline "noItem"}}
     <div>
@@ -16,19 +18,21 @@
         <input type='submit' class="btn-new button" value='Neue Notiz'>
     </form>
     <form action='/settings/1' method='post' id="form-order-by-end-date">
-        <input type='submit' class="btn-order-by-end-date button" value='Nach Enddatum'>
+        <input type='submit' class="btn-order-by-end-date button {{orderDirectionDeadline}}" value='Nach Enddatum'>
     </form>
     <form action='/settings/2' method='post' id="form-order-by-start-date">
-        <input type='submit' class="btn-order-by-start-date button" value='Nach Erstelldatum'>
+        <input type='submit' class="btn-order-by-start-date button {{orderDirectionCreateDate}}"
+               value='Nach Erstelldatum'>
     </form>
     <form action='/settings/3' method='post' id="form-order-by-importance">
-        <input type='submit' class="btn-order-by-importance button" value='Nach Wichtigkeit'>
+        <input type='submit' class="btn-order-by-importance button {{orderDirectionImportance}}"
+               value='Nach Wichtigkeit'>
     </form>
     <form action='/settings/4' method='post' id="form-switch-style">
         <input type='submit' class="btn-switch-style button" value='Style Switcher'>
     </form>
-    <form action='/notes' method='post' id="form-hide-finished">
-        <input type='submit' class="btn-hide-finished button" value='Fertige Verbergen'>
+    <form action='/settings/5' method='post' id="form-hide-finished">
+        <input type='submit' class="btn-hide-finished button {{hideFinished}}" value='Fertige Verbergen'>
     </form>
     {{#each notes}}
         {{> noteItem note=.}}

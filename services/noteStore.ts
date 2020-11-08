@@ -32,22 +32,22 @@ import Datastore from 'nedb-promises'
             this._deadline = value;
         }
 
-        get isNoteDone(): boolean {
+        get isNoteDone(): any {
             return this._isNoteDone;
         }
 
-        set isNoteDone(value: boolean) {
+        set isNoteDone(value: any) {
             this._isNoteDone = value;
         }
 
         private _noteTitle: string;
         private _noteDescription: string;
-        private _importance: string;
+        private _importance: any;
         private _deadline: Date;
         private _createDate: Date;
-        private _isNoteDone: boolean;
+        private _isNoteDone: any;
 
-        constructor(noteTitle: string, noteDescription: string, importance: string, deadline: Date, createDate: Date, isNoteDone: boolean) {
+        constructor(noteTitle: string, noteDescription: string, importance: number, deadline: Date, createDate: Date, isNoteDone: any) {
             this._noteTitle = noteTitle;
             this._noteDescription = noteDescription;
             this._importance = importance;
@@ -66,13 +66,15 @@ import Datastore from 'nedb-promises'
 
         async add(noteTitle: string, noteDescription: string, importance: number, deadline: Date, createDate: Date, isNoteDone: boolean = false) {
             console.log('noteTitle ' + noteTitle + ' noteDescription ' + noteDescription + ' importance ' + importance + ' deadline ' + deadline);
-            let note = new Note(noteTitle, noteDescription, '*'.repeat(importance), deadline, createDate, isNoteDone);
+            let note = new Note(noteTitle, noteDescription, importance, deadline, createDate, isNoteDone);
             return await noteStore.db.insert(note);
         }
 
-        async update(req: { fields: { id: string; title: string; description: string; importance: number; deadline: Date; done: boolean; }; }) {
+        async update(req) {
             // @ts-ignore
-            return await noteStore.db.update({_id: '' + req.fields.id + ''}, {
+            let query = {_id: req.params.id};
+            console.log('Query: '+JSON.stringify(query));
+            return await noteStore.db.update({_id: req.params.id}, {
                 $set: {
                     _noteTitle: req.fields.title,
                     _noteDescription: req.fields.description,
@@ -80,25 +82,18 @@ import Datastore from 'nedb-promises'
                     _deadline: req.fields.deadline,
                     _isNoteDone: req.fields.done
                 }
-            }) as unknown as Note;
-        }
-
-        async finish(id: string) {
-            await noteStore.db.update({_id: id}, {$set: {isNoteDone: "TRUE"}});
-            return await noteStore.get(id);
+            });
         }
 
         async get(id: string): Promise<Note> {
-            console.log("{_id: \""+id+"\"}");
-            return await noteStore.db.findOne({_id: '' + id + ''}).then((value) => {
+            return await noteStore.db.findOne({_id: id}).then((value) => {
                 return value as unknown as Note
             });
         }
 
         async all(req) {
-            console.log('limit: '+req.userSettings.doLimit+' orderBy:'+req.userSettings.orderBy);
-            return noteStore.db.find(req.userSettings.doLimit).sort(req.userSettings.orderBy).then(value => {
-                return value;
+            return noteStore.db.find(req.userSettings.doLimit).sort(req.userSettings.orderBy).then(values => {
+                return values;
             });
         }
     }
