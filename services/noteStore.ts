@@ -58,13 +58,16 @@ import Datastore from 'nedb-promises'
             // @ts-ignore
             let query = {_id: req.params.id};
             console.log('Query: '+JSON.stringify(query));
+            console.log('Done: '+JSON.stringify(req.fields.done));
+            console.log('on'.localeCompare(req.fields.done) == 0);
             return await noteStore.db.update({_id: req.params.id}, {
+
                 $set: {
                     _noteTitle: req.fields.title,
                     _noteDescription: req.fields.description,
                     _importance: req.fields.importance,
                     _deadline: req.fields.deadline,
-                    _isNoteDone: req.fields.done
+                    _isNoteDone: 'on'.localeCompare(req.fields.done) == 0
                 }
             });
         }

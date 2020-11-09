@@ -4,7 +4,6 @@ export class IndexController {
 
     index(req, res) {
         noteStore.all(req).then(value => {
-            console.log(JSON.stringify(value));
             res.render("index", {
                 title: 'Todo Manager',
                 notes: value,

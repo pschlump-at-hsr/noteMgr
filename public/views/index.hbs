@@ -12,11 +12,11 @@
     </form>
 {{/inline}}
 {{#*inline "noItem"}}
-    <div>
-        <span>Keine Notizen erfasst</span>
+    <div id="no-item" class="deadline">
+        <span >Keine Notizen erfasst</span>
     </div>
 {{/inline}}
-<div class="container {{orderBy}}">
+<div class="container">
     <form action='/notes' method='get' id="form-new">
         <input type='submit' class="btn-new button" value='Neue Notiz'>
     </form>
