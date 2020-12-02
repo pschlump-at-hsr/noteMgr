@@ -25,10 +25,10 @@ export class NotesController {
                 title: 'Todo Bearbeiten',
                 note: value,
                 style: req.session.userSettings.styleMode,
-                checked: value._isNoteDone ? 'checked' : ''
+                checked: value.isNoteDone ? 'checked' : ''
             });
         })
     };
 }
 
-export const settingsController = new NotesController();
+export const notesController = new NotesController();

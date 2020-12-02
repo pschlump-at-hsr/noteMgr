@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(session({
     secret: 'loremipsumdolorsitametonsecteturadipisicielit',
-    cookie: {maxAge: 60000},
+    cookie: {maxAge: 6000000},
     resave: true,
     saveUninitialized: true
 }));

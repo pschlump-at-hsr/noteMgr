@@ -2,12 +2,13 @@
   "compilerOptions": {
     "module": "ES6",
     "target": "ES6",
-    "moduleResolution": "Node",
     "allowJs": true,
     "checkJs": true,
     "strict": true,
-    "noImplicitAny": false,
-    "esModuleInterop": true
+    "sourceMap": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",
